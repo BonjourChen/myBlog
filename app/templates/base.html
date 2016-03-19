@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block title %}{% endblock %} | Blog</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='flat-ui/css/flat-ui.min.css') }}">
+	<script type="text/javascript" src="{{ url_for('static',filename='jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+	<style type="text/css">
+		h1{
+			font-size: 50px;
+		}
+		h2{
+			font-size: 40px;
+		}
+		h3{
+			font-size: 30px;
+		}
+		p{
+			font-size: 15px;
+		}
+		blockquote p{
+			font-size: 17px;
+		}
+		body{
+			font-size: 15px;
+		}
+	</style>
+</head>
+
+<script type="text/javascript">
+$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+<body style="background-color:#ECF0F1">
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+				</button>
+				<a class="navbar-brand" href="#">BONJOUR!</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar-collapse-1">
+				<ul class="nav navbar-nav clearfix">
+					<li><a href="#">ARTICLES</a></li>
+					<li><a href="#">ABOUTME</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">SIGN IN</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<div class="login-form">
+		<div class="form-group">
+			<input name="login_name" type="text" class="form-control login-field" value="" placeholder="Username" id="login-username" />
+			<label class="login-field-icon fui-user" for="login-username"></label>	
+		</div>
+		<div class="form-group">
+			<input name="login_password" type="password" class="form-control login-field" value="" placeholder="Password" id="login-password" />
+			<label class="login-field-icon fui-lock" for="login-password"></label>
+		</div>
+		<input class="btn btn-primary btn-block" type="submit" name="dlf_submit" value="Log In" />
+	</div>
+
+	{% block body%}
+	{% endblock %}
+	<div style="background:#34495E;color:#ECF0F1">
+		<div class="container">
+			<div class="row" style="padding-top:20px;">
+				<div class="col-md-7">
+					<p><strong>This is a blog</strong></p>
+				</div>
+				<div class="col-md-5">
+				</div>
+				<div class="col-md-12">
+				<p> <small>© COPYRIGHT BY BONJOURCHEN 2016</small></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
