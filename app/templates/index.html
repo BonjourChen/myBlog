@@ -3,7 +3,13 @@
 MYBLOG
 {% endblock %}
 {% block body %}
+{% import "_macros.html" as macro %}
+
 <div>
 hello!
+
+	{% if pagination %}
+	{{ macro.pagination_widget(pagination,'.index') }}	
+    {% endif %}
 </div>
 {% endblock %}

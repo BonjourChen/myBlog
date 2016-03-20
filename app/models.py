@@ -1,5 +1,8 @@
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
+from markdown import markdown
+import bleach
 
 class User(db.Model):
 	__tablename__ = 'users'
@@ -20,3 +23,10 @@ class User(db.Model):
 
 	def __repr__(self):
 		return '<User %r>' % self.username
+
+class Post(db.Model):
+	__tablename__ = 'posts'
+	id = db.Column(db.Integer, primary_key=True)
+	body = db.Column(db.Text)
+	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+	# category_id = db.Column(db.Integer,db.ForeignKey('categorys.id'))
