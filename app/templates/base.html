@@ -63,7 +63,10 @@ $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 			<input name="login_password" type="password" class="form-control login-field" value="" placeholder="Password" id="login-password" />
 			<label class="login-field-icon fui-lock" for="login-password"></label>
 		</div>
-		<input class="btn btn-primary btn-block" type="submit" name="dlf_submit" value="Log In" />
+		<label class="checkbox">
+			<input type="checkbox" />keep alive
+		</label>
+		<a class="btn btn-primary btn-block" href="#">Login</a>
 	</div>
 
 	{% block body%}
