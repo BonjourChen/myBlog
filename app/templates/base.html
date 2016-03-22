@@ -8,26 +8,6 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='flat-ui/css/flat-ui.min.css') }}">
 	<script type="text/javascript" src="{{ url_for('static',filename='jquery.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
-	<style type="text/css">
-		h1{
-			font-size: 50px;
-		}
-		h2{
-			font-size: 40px;
-		}
-		h3{
-			font-size: 30px;
-		}
-		p{
-			font-size: 15px;
-		}
-		blockquote p{
-			font-size: 17px;
-		}
-		body{
-			font-size: 15px;
-		}
-	</style>
 </head>
 
 <script type="text/javascript">
@@ -49,33 +29,24 @@ $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 					<li><a href="#">ABOUTME</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					{% if current_user.is_authenticated %}
+					<li><a href="#">SIGN OUT</a></li>
+					{% else %}
 					<li><a href="#">SIGN IN</a></li>
+					{% endif %}
 				</ul>
 			</div>
 		</div>
 	</nav>
-	<div class="login-form">
-		<div class="form-group">
-			<input name="login_name" type="text" class="form-control login-field" value="" placeholder="Username" id="login-username" />
-			<label class="login-field-icon fui-user" for="login-username"></label>	
-		</div>
-		<div class="form-group">
-			<input name="login_password" type="password" class="form-control login-field" value="" placeholder="Password" id="login-password" />
-			<label class="login-field-icon fui-lock" for="login-password"></label>
-		</div>
-		<label class="checkbox">
-			<input type="checkbox" />keep alive
-		</label>
-		<a class="btn btn-primary btn-block" href="#">Login</a>
-	</div>
 
 	{% block body%}
 	{% endblock %}
-	<div style="background:#34495E;color:#ECF0F1">
+
+	<div style="background:#34495E;color:#ECF0F1;position: fixed;bottom: 0;width: 100%">
 		<div class="container"> 
 			<div class="row" style="padding-top:20px;">
 				<div class="col-md-7">
-					<p><strong>This is a blog</strong></p>
+					<p><h4><strong>Keep Studying.</h4></strong></p>
 				</div>
 				<div class="col-md-5">
 				</div>
