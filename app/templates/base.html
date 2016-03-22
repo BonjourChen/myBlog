@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{% block title %}{% endblock %} | Blog</title>
+	<title>{% block title %}{% endblock %} Bonjour's Blog</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='flat-ui/css/flat-ui.min.css') }}">
 	<script type="text/javascript" src="{{ url_for('static',filename='jquery.min.js') }}"></script>
@@ -30,9 +30,9 @@ $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					{% if current_user.is_authenticated %}
-					<li><a href="#">SIGN OUT</a></li>
+					<li><a href="{{ url_for('.404') }}">SIGN OUT</a></li>
 					{% else %}
-					<li><a href="#">SIGN IN</a></li>
+					<li><a href="{{ url_for('.login') }}">SIGN IN</a></li>
 					{% endif %}
 				</ul>
 			</div>

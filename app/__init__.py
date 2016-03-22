@@ -4,6 +4,7 @@ from flask.ext.pagedown import PageDown
 from flask.ext.login import LoginManager
 # from flask.ext.misaka import Misaka
 from config import Config
+from flask.ext.bootstrap import Bootstrap
 
 db = SQLAlchemy()
 pagedown = PageDown()
@@ -18,6 +19,9 @@ def create_app(config_name):
 	db.init_app(app)
 	pagedown.init_app(app)
 	login_manager.init_app(app)
+	login_manager.session_protection = 'strong'
+	login_manager.login_view = 'main.login'
+	bootstrap = Bootstrap(app)
 
 	from .main import main as main_blueprint
 	app.register_blueprint(main_blueprint)
