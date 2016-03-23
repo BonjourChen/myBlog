@@ -1,51 +1,30 @@
 {% extends "base.html" %}
+
 {% block title %}
 MYBLOG
 {% endblock %}
-{% block body %}
+
+{% block content %}
 {% import "_macros.html" as macro %}
 
-<div>
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p><p>123</p>
-<p>123</p>
+<div class="container">
+	<div class="row">
+		<div class="col-md-9">
+			{% for post in posts %}
+			<article class="article the-font" style="display:none">
+				<a href="/post/{{ post.id }}"><h3 style="color:#34495E">{{ post.title }}</h3></a>
+				<p><small><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><span style="color:#8C8C8C;">{{ post.timestamp }}</span></small></p>
+				<div class="post-alert">本博客采用创作共用版权协议, 要求署名、非商业用途和保持一致. 转载本博客文章必须也遵循署名-非商业用途-保持一致的创作共用协议</div>
+				<p>{{ post.summury_html|safe }}</p>
+			</article>
+			{% endfor %}
+			{% if pagination %}
+			{{ macro.pagination_widget(pagination,'.index') }}	
+		    {% endif %}
+		</div>
+	</div>
+</div>
 
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p>
 
-<p>123</p>
-<p>123</p>
-<p>123</p><p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p>
-
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p>
-<p>123</p><p>123</p>
-<p>123</p>
-
-	{% if pagination %}
-	{{ macro.pagination_widget(pagination,'.index') }}	
-    {% endif %}
 </div>
 {% endblock %}

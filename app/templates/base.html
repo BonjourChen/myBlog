@@ -15,10 +15,10 @@
 	}
 	body > #wrap {
 		height: auto; 
-		min-height: 50%;
+		min-height: 100%;
 	}
 	#main {
-		padding-bottom: 150px;
+		padding-bottom: 20px;
 	}  /* 必须使用和footer相同的高度 */
 	#footer {
 		position: relative;
@@ -26,42 +26,65 @@
 		height: 150px;
 		clear:both;
 	}
+	.clearfix:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+	.clearfix {
+		display: inline-block;
+	}
+	/* Hides from IE-mac \*/
+	* html .clearfix {
+		height: 1%;
+	}
+	.clearfix {
+		display: block;
+	}
+	/* End hide from IE-mac */
 </style>
 <script type="text/javascript">
 $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
 
 <body style="background-color:#ECF0F1">
-	<nav class="navbar navbar-default">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span>
-				</button>
-				<a class="navbar-brand" href="/">BONJOUR!</a>
-			</div>
-			<div class="collapse navbar-collapse" id="navbar-collapse-1">
-				<ul class="nav navbar-nav clearfix">
-					<li><a href="#">CATEGORY</a></li>
-					<li><a href="#">ABOUTME</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					{% if current_user.is_authenticated %}
-					<li><a href="{{ url_for('.logout') }}">SIGN OUT</a></li>
-					{% else %}
-					<li><a href="{{ url_for('.login') }}">SIGN IN</a></li>
-					{% endif %}
-				</ul>
-			</div>
+	<div id="wrap">
+		<div id="main" class=" clearfix">
+			<nav class="navbar navbar-default">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+						</button>
+						<a class="navbar-brand" href="/">BONJOUR!</a>
+					</div>
+					<div class="collapse navbar-collapse" id="navbar-collapse-1">
+						<ul class="nav navbar-nav clearfix">
+							<li><a href="#">CATEGORY</a></li>
+							<li><a href="#">ABOUTME</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							{% if current_user.is_authenticated %}
+							<li><a href="{{ url_for('.logout') }}">SIGN OUT</a></li>
+							{% else %}
+							<li><a href="{{ url_for('.login') }}">SIGN IN</a></li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+			</nav>
 		</div>
-	</nav>
 
 	{% block content %}
 	{% endblock %}
+	</div>
+
 <!-- 	<div style="background:#34495E;color:#ECF0F1;position: fixed;bottom: 0;width: 100%"> -->
 	<div style="background:#34495E;color:#ECF0F1" id="footer">
 		<div class="container"> 
-			<div class="row" style="padding-top:20px;">
+			<div class="row" style="padding-top:10px;">
 				<div class="col-md-7">
 					<p><h4><strong>Keep Studying.</h4></strong></p>
 				</div>
