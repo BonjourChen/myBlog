@@ -1,7 +1,7 @@
-from flask import render_template, redirect, url_for, flash
-from flask.ext.login import login_user, logout_user, login_required
+from flask import render_template, redirect, url_for, flash, request
+from flask.ext.login import login_user, logout_user, login_required, current_user
 from . import main
-from .. import db
+from .. import db, login_manager
 from ..models import User
 from .forms import LoginForm
 
@@ -13,8 +13,11 @@ def login():
 		if user is not None and user.verify_password(form.password.data):
 			login_user(user,form.remember_me.data)
 			return redirect(request.args.get('next') or url_for('main.index'))
-		else:
-			flash('Invalid username or password.')
+		flash('Invalid username or password.')
+	elif form.username.data is None:
+		flash('Please enter a username.')
+	elif form.password.data is None:
+		flash('Please enter the password.')
 	return render_template('login.html', form=form)
 
 @main.route('/')
@@ -28,3 +31,6 @@ def logout():
 	flash('You have been logged out.')
 	return redirect(url_for('main.index'))
 
+@login_manager.user_loader
+def load_user(user_id):
+	return User.query.get(int(user_id))

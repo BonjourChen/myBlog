@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
 
-{% block body %}
-<div style="box-shadow:0 0 10px #BDC3C7;border-radius:0" class="login-form col-md-4 col-md-offset-4">
-<form method="POST">
+{% block content %}
+<div id="wrap"  id="main" style="box-shadow:0 0 10px #BDC3C7;border-radius:0" class="login-form col-md-4 col-md-offset-4 clearfix">
+<form action="" method="POST" name="login">
+  {{form.hidden_tag()}}
   <label><strong><h3>SIGN IN</h3></strong></label>
   <div class="form-group">
     {{form.username(placeholder="Username",class="form-control login-field")}}
@@ -18,14 +18,13 @@
     <label> Keep me logged in</label>
   </div>
   {{ form.submit(class="btn btn-primary btn-block")}}
-  {% with mess=get_flashed_messages() %}
-  {% if mess%}}
-    <ul>{{ mess[0] }}</ul>>
-  {% endif %}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+        <p style="color:red;font-size:5px;">{{message}}</p>
+    {% endfor %}
+    {% endif %}
   {% endwith %}
 </form>
 </div>
 {% endblock %}
-
-<!--     <input name="username" type="text" class="form-control login-field" value="" placeholder="Username" id="username" /> -->
-<!--     <input name="password" type="password" class="form-control login-field" value="" placeholder="Password" id="password" /> -->

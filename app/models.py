@@ -53,8 +53,3 @@ class Post(db.Model):
 
 db.event.listen(Post.body, 'set', Post.on_changed_body)
 db.event.listen(Post.summary, 'set', Post.on_changed_summary)
-
-@login_manager.user_loader
-def load_user(user_id):
-	return User.query.get(int(user_id))
-	# category_id = db.Column(db.Integer,db.ForeignKey('categorys.id'))

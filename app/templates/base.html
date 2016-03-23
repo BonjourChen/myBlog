@@ -9,7 +9,24 @@
 	<script type="text/javascript" src="{{ url_for('static',filename='jquery.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
 </head>
-
+<style type="text/css">
+	html, body, #wrap {
+		height: 100%;
+	}
+	body > #wrap {
+		height: auto; 
+		min-height: 50%;
+	}
+	#main {
+		padding-bottom: 150px;
+	}  /* 必须使用和footer相同的高度 */
+	#footer {
+		position: relative;
+		margin-top: -150px; /* footer高度的负值 */
+		height: 150px;
+		clear:both;
+	}
+</style>
 <script type="text/javascript">
 $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
@@ -21,7 +38,7 @@ $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
 					<span class="sr-only">Toggle navigation</span>
 				</button>
-				<a class="navbar-brand" href="#">BONJOUR!</a>
+				<a class="navbar-brand" href="/">BONJOUR!</a>
 			</div>
 			<div class="collapse navbar-collapse" id="navbar-collapse-1">
 				<ul class="nav navbar-nav clearfix">
@@ -30,7 +47,7 @@ $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					{% if current_user.is_authenticated %}
-					<li><a href="{{ url_for('.404') }}">SIGN OUT</a></li>
+					<li><a href="{{ url_for('.logout') }}">SIGN OUT</a></li>
 					{% else %}
 					<li><a href="{{ url_for('.login') }}">SIGN IN</a></li>
 					{% endif %}
@@ -39,10 +56,10 @@ $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 		</div>
 	</nav>
 
-	{% block body%}
+	{% block content %}
 	{% endblock %}
-
-	<div style="background:#34495E;color:#ECF0F1;position: fixed;bottom: 0;width: 100%">
+<!-- 	<div style="background:#34495E;color:#ECF0F1;position: fixed;bottom: 0;width: 100%"> -->
+	<div style="background:#34495E;color:#ECF0F1" id="footer">
 		<div class="container"> 
 			<div class="row" style="padding-top:20px;">
 				<div class="col-md-7">
