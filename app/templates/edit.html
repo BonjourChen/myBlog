@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+{% import "_macros.html" as macro %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			{% for post in posts %}
+			<article style="box-shadow:0 0 10px #BDC3C7;border-radius:0">
+				<div class="col-md-10">
+					<a href="/post/{{ post.id }}"><h3 style="color:#34495E">{{ post.title }}</h3></a>
+				</div>
+				<div class="col-md-1">
+					<a href="/editpage/{{ post.id }}" class="btn btn-primary">EDIT</a>
+				</div>
+				<div class="col-md-1">
+					<a href="/delete/{{ post.id }}" class="btn btn-danger">DELETE</a>
+				</div>
+			</article>
+			{% endfor %}
+		</div>
+		
+		{% if pagination %}
+		{{ macro.pagination_widget(pagination,'.edit') }}	
+	    {% endif %}
+	</div>
+</div>
+
+{% endblock %}

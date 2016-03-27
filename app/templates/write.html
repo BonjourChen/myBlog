@@ -1,58 +1,52 @@
 {% extends "base.html" %}
 {% block content %}
-
+{{ super()}}
 {{ pagedown.include_pagedown() }}
-	
 
+	
 <div class="container">
 <div class="row">
 	<div class="col-md-12">
-		<div style="box-shadow:5px 5px 20px #CCC;background-color:white;padding:20px 30px;margin-bottom:40px;">
-		<h2 class="text-center">TO WRITE A BLOG!</h2>
-		{% if messages %}
-		{% for message in messages %}
-		<p class="alert alert-warning">{{ message }}</p>
-		{% endfor %}
-		{% endif %}
-		{% macro render_field(field) %}
-		{% for error in field.errors %}
-		{{ error }}
-		{% endfor %}
-		{% endmacro %}
-			<form class="form-horizontal" method="post" action="">
-				{{form.hidden_tag()}}
-				<div class="form-group">
-    					<label for="inputEmail3" class="col-sm-1 control-label">{{ form.title.label }}</label>
-    						<div class="col-sm-11">
-      						{{ form.title(class="form-control",placeholder="the title") }}
-   						 </div>
-  				</div>
-  				<div class="form-group">
-    					<label for="inputEmail3" class="col-sm-1 control-label">{{ form.body.label }}</label>
-    						<div class="col-sm-11">
-      						{{ form.body(class="form-control",placeholder="the body") }}
-   						 </div>
-  				</div>
-  				<div class="form-group">
-    					<label for="inputEmail3" class="col-sm-1 control-label">{{ form.summury.label }}</label>
-    						<div class="col-sm-11">
-      						{{ form.summury(class="form-control",placeholder="the summury") }}
-   						 </div>
-  				</div>
-  				
-  				
-  				<input type="submit" value="Go" class="btn btn-large btn-block btn-primary">
-			</form>
-			
-		</div>
-		
-  	</div>
-  	
+		<div style="box-shadow:0 0 10px #BDC3C7;border-radius:0" class="login-form col-md-12">
+<!--     <label><strong><h3>NEW BLOG</h3></strong></label> -->
+    <form class="form-horizontal" action="" method="POST" name="login">
+      {{form.hidden_tag()}}
+    
+      <div class="form-group required">
+          {{ form.title(class="form-control",placeholder="Title") }}
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            {{ form.category(class="form-control", placeholder="Category") }}
+          </div>
+          <div class="col-md-6">
+            {{ form.tags(class="form-control", placeholder="Tags") }}
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            {{ form.body(type="textarea", rows="15", class="form-control input-markdown", only_input=True, value=form.body, placeholder=form.body.label.text) }} 
+          </div>
+          <div class="col-md-6" style="height:auto;max-height:300px;overflow:auto;"> 
+            {{ form.body(only_preview=True) }} 
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form.summary(type="textarea", rows="5", class="form-control input-markdown", only_input=True, value=form.summary, placeholder=form.summary.label.text) }} 
+      </div>
+
+      {{ form.submit(class="btn btn-primary btn-block")}}
+
+    </form>
+    </div>
+
+  </div>
 </div>
 </div>
-
-
-
-
 
 {% endblock %}

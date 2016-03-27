@@ -3,28 +3,35 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{% block title %}{% endblock %} Bonjour's Blog</title>
+	<title>{% block title %}{% endblock %} | Bonjour's Blog</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='flat-ui/css/flat-ui.min.css') }}">
+	<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='flat-ui/css/flat-ui.min.css') }}"> -->
 	<script type="text/javascript" src="{{ url_for('static',filename='jquery.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
 </head>
 <style type="text/css">
-	html, body, #wrap {
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	html, body, .wrap {
 		height: 100%;
 	}
-	body > #wrap {
-		height: auto; 
+	body > .wrap {
+		height: auto;
 		min-height: 100%;
 	}
-	#main {
-		padding-bottom: 20px;
-	}  /* 必须使用和footer相同的高度 */
-	#footer {
+	.main {
+		padding-bottom: 150px;
+	}
+	.header {
+		height: 50px;
+	}
+	.footer {
 		position: relative;
-		margin-top: -150px; /* footer高度的负值 */
+		margin-top: -150px;
 		height: 150px;
-		clear:both;
+		clear: both;
 	}
 	.clearfix:after {
 		content: ".";
@@ -36,25 +43,24 @@
 	.clearfix {
 		display: inline-block;
 	}
-	/* Hides from IE-mac \*/
 	* html .clearfix {
 		height: 1%;
 	}
 	.clearfix {
 		display: block;
 	}
-	/* End hide from IE-mac */
+
 </style>
 <script type="text/javascript">
 $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
 
 <body style="background-color:#ECF0F1">
-	<div id="wrap">
-		<div id="main" class=" clearfix">
+	<div class="wrap">
+		<div class="main clearfix">
 			<nav class="navbar navbar-default">
 				<div class="container">
-					<div class="navbar-header">
+					<div class="navbar-header header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
 							<span class="sr-only">Toggle navigation</span>
 						</button>
@@ -67,6 +73,8 @@ $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							{% if current_user.is_authenticated %}
+							<li><a href="{{ url_for('.edit') }}">EDIT</a></li>
+							<li><a href="{{ url_for('.write') }}">CREATE</a></li>
 							<li><a href="{{ url_for('.logout') }}">SIGN OUT</a></li>
 							{% else %}
 							<li><a href="{{ url_for('.login') }}">SIGN IN</a></li>
@@ -75,14 +83,16 @@ $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 					</div>
 				</div>
 			</nav>
-		</div>
+			<div>
+			{% block content %}
+			{% endblock %}				
+			</div>
 
-	{% block content %}
-	{% endblock %}
+		</div>
 	</div>
 
-<!-- 	<div style="background:#34495E;color:#ECF0F1;position: fixed;bottom: 0;width: 100%"> -->
-	<div style="background:#34495E;color:#ECF0F1" id="footer">
+
+	<div style="background:#34495E;color:#ECF0F1" class="footer">
 		<div class="container"> 
 			<div class="row" style="padding-top:10px;">
 				<div class="col-md-7">

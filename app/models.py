@@ -6,6 +6,7 @@ import bleach
 from . import login_manager
 from flask.ext.login import UserMixin
 
+
 class User(UserMixin, db.Model):
 	__tablename__ = 'users'
 	id = db.Column(db.Integer, primary_key=True)
@@ -29,7 +30,8 @@ class User(UserMixin, db.Model):
 class Post(db.Model):
 	__tablename__ = 'posts'
 	id = db.Column(db.Integer, primary_key=True)
-	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+	title=db.Column(db.Text)
+	timestamp = db.Column(db.DateTime, index=True, default=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 	body = db.Column(db.Text)
 	body_html = db.Column(db.Text)
 	summary = db.Column(db.Text)
@@ -38,18 +40,28 @@ class Post(db.Model):
 	@staticmethod
 	def on_changed_body(target, value, oldvalue, initiator):
 		allowed_tags = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em', 'i',
-						'li', 'ol','pre', 'strong', 'ul', 'h1', 'h2', 'h3', 'p']
+						'li', 'ol','pre', 'strong', 'ul', 'h1', 'h2', 'h3', 'p', 'img']
+		attrs = { 
+			'*': ['class'], 
+			'a': ['href', 'rel'], 
+			'img': ['src', 'alt']
+			}
 		target.body_html = bleach.linkify(bleach.clean(
 			markdown(value, output_format='html'),
-			tags=allowed_tags, strip=True))
+			tags=allowed_tags, attributes=attrs, strip=True))
 
 	@staticmethod
 	def on_changed_summary(target, value, oldvalue, initiator):
 		allowed_tags = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em', 'i',
-						'li', 'ol','pre', 'strong', 'ul', 'h1', 'h2', 'h3', 'p']
+						'li', 'ol','pre', 'strong', 'ul', 'h1', 'h2', 'h3', 'p', 'img']
+		attrs = { 
+			'*': ['class'], 
+			'a': ['href', 'rel'], 
+			'img': ['src', 'alt']
+			}
 		target.summary_html = bleach.linkify(bleach.clean(
 			markdown(value, output_format='html'),
-			tags=allowed_tags, strip=True))
+			tags=allowed_tags, attributes=attrs, strip=True))
 
 db.event.listen(Post.body, 'set', Post.on_changed_body)
 db.event.listen(Post.summary, 'set', Post.on_changed_summary)

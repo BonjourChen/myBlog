@@ -12,6 +12,7 @@ class LoginForm(Form):
 class PostForm(Form):
 	title=StringField("TITLE",validators=[Required()])
 	body=PageDownField("BODY",validators=[Required()])
-	summury=PageDownField('SUMMURY',validators=[Required()])
+	summary=PageDownField('SUMMARY',validators=[Required()])
 	category=StringField("CATEGORY",validators=[Required()])
+	tags=StringField("TAGS",validators=[Required()])
 	submit=SubmitField('update')
