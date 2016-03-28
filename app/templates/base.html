@@ -5,7 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>{% block title %}{% endblock %} | Bonjour's Blog</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-	<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='flat-ui/css/flat-ui.min.css') }}"> -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='buttons.css')}}">
+<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='flat-ui/css/flat-ui.min.css') }}"> -->
 	<script type="text/javascript" src="{{ url_for('static',filename='jquery.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
 </head>
@@ -55,27 +56,27 @@
 $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
 
-<body style="background-color:#ECF0F1">
+<body>
 	<div class="wrap">
-		<div class="main clearfix">
-			<nav class="navbar navbar-default">
+		<div class="clearfix">
+			<nav class="navbar navbar-default" style="background-color:#FFFFFF; border:0">
 				<div class="container">
 					<div class="navbar-header header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
 							<span class="sr-only">Toggle navigation</span>
 						</button>
-						<a class="navbar-brand" href="/">BONJOUR!</a>
+						<a class="navbar-brand" href="/"><img src="/static/pic/12.png" style="height:100%"></a>
 					</div>
 					<div class="collapse navbar-collapse" id="navbar-collapse-1">
 						<ul class="nav navbar-nav clearfix">
-							<li><a href="#">CATEGORY</a></li>
-							<li><a href="#">ABOUTME</a></li>
+							<li><a href="/">BLOG</a></li>
+							<li><a href="#">ABOUT ME</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							{% if current_user.is_authenticated %}
-							<li><a href="{{ url_for('.edit') }}">EDIT</a></li>
-							<li><a href="{{ url_for('.write') }}">CREATE</a></li>
-							<li><a href="{{ url_for('.logout') }}">SIGN OUT</a></li>
+							<a href="{{ url_for('.edit') }}" class="button button-highlight button-pill button-small" style="margin-top:10px">EDIT</a>
+							<a href="{{ url_for('.write') }}" class="button button-action button-pill button-small" style="margin-top:10px">CREATE</a>
+							<a href="{{ url_for('.logout') }}" class="button button-caution button-pill button-small" style="margin-top:10px">SIGN OUT</a>
 							{% else %}
 							<li><a href="{{ url_for('.login') }}">SIGN IN</a></li>
 							{% endif %}
@@ -83,6 +84,7 @@ $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 					</div>
 				</div>
 			</nav>
+
 			<div>
 			{% block content %}
 			{% endblock %}				

@@ -6,7 +6,18 @@ MYBLOG
 
 {% block content %}
 {% import "_macros.html" as macro %}
-
+<div style="height:350px;background:url('/static/pic/background.jpg')">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<p style="color:#FFF; font-size:25px; margin-top:50px">You could walk straight through hell with a smile</p>
+				<p style="color:#FFF; font-size:25px; margin-top:10px">Do it for your people</p>
+				<p style="color:#FFF; font-size:25px; margin-top:10px">Do it for your pride</p>
+				<p style="color:#FFF; font-size:25px; margin-top:10px">Never gonna know if you never even try</p>
+			</div>
+		</div>
+	</div>
+</div>
 <div class="container">
 	<div class="row">
 		<div class="col-md-9">
@@ -17,15 +28,29 @@ MYBLOG
 	<div class="post-alert">本博客采用创作共用版权协议, 要求署名、非商业用途和保持一致. 转载本博客文章必须也遵循署名-非商业用途-保持一致的创作共用协议</div>
 	<p>{{ post.summury_html|safe }}</p>
 </article> -->
-			<article style="box-shadow:0 0 10px #BDC3C7;border-radius:0">
-				<a href="/post/{{ post.id }}"><h4 style="color:#34495E">{{ post.title }}</h4></a>
-				<div>{{ post.summary_html | safe }}</div>
-			</article>
-			
+			<div style="margin-top:20px">
+				<article style="box-shadow:0 0 10px #BDC3C7; border-radius:0;padding:20px 20px 20px 20px">
+					<a href="/post/{{ post.id }}"><h4 style="color:#34495E; ">{{ post.title }}</h4></a>
+					<p><small><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><span style="color:#8C8C8C">{{ post.timestamp }}</span></small></p>
+					<div>{{ post.summary_html | safe }}</div>
+					<hr style="border:1px dashed #0000fff"/>
+					<p>
+						<a href="/category/{{ post.category }}"><span class="button button-rounded button-tiny"><span class="glyphicon glyphicon glyphicon-fire" aria-hidden="true"></span>{{ post.category }}</span></a>
+					</p>
+<!-- 					<p>
+<a href="/category/{{ post.category }}"><span class="label label-default text-left"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> {{ post.category }}</span>
+				<a href="/post/{{ post.id }}" style="float:right"><button class="btn  btn-primary btn-wide text-right"><span class="glyphicon glyphicon-fire glyphicon " aria-hidden="true"></span>了解更多</button></a>
+				</p> -->
+				</article>
+			<div>
 			{% endfor %}
+
+			<div>
 			{% if pagination %}
 			{{ macro.pagination_widget(pagination,'.index') }}	
 		    {% endif %}
+		    </div>
+
 		</div>
 	</div>
 </div>
