@@ -19,7 +19,7 @@ MYBLOG
 </article> -->
 			<article style="box-shadow:0 0 10px #BDC3C7;border-radius:0">
 				<a href="/post/{{ post.id }}"><h4 style="color:#34495E">{{ post.title }}</h4></a>
-				<div>{{ post.summary_html|safe }}</div>
+				<div>{{ post.summary_html | safe }}</div>
 			</article>
 			
 			{% endfor %}

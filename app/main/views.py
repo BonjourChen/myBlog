@@ -72,7 +72,7 @@ def delete(id):
 @main.route('/editpage/<string:id>')
 def editpage(id):
 	post = Post.query.filter_by(id=id).first()
-	return render_template('edit.html',post=post)
+	return render_template('editpage.html',post=post)
 
 
 @login_manager.user_loader

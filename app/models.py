@@ -36,6 +36,7 @@ class Post(db.Model):
 	body_html = db.Column(db.Text)
 	summary = db.Column(db.Text)
 	summary_html = db.Column(db.Text)
+	category =  db.Column(db.Text)
 
 	@staticmethod
 	def on_changed_body(target, value, oldvalue, initiator):
@@ -62,6 +63,17 @@ class Post(db.Model):
 		target.summary_html = bleach.linkify(bleach.clean(
 			markdown(value, output_format='html'),
 			tags=allowed_tags, attributes=attrs, strip=True))
+
+class Category(db.Model):
+	__tablename__ = 'category'
+	id = db.Column(db.Integer, primary_key=True)
+	category =  db.Column(db.Text)
+	# posts = db.relationship('Post', backref='category')
+
+class Tags(db.Model):
+	__tablename__ = 'tags'
+	id = db.Column(db.Integer, primary_key=True)
+	tags = db.Column(db.Text)
 
 db.event.listen(Post.body, 'set', Post.on_changed_body)
 db.event.listen(Post.summary, 'set', Post.on_changed_summary)

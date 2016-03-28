@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+{{ super()}}
+{{ pagedown.include_pagedown() }}
+
+	
+<div class="container">
+<div class="row">
+	<div class="col-md-12">
+		<div style="box-shadow:0 0 10px #BDC3C7;border-radius:0" class="login-form col-md-12">
+<!--     <label><strong><h3>NEW BLOG</h3></strong></label> -->
+    <form class="form-horizontal" action="" method="POST" name="login">
+      {{form.hidden_tag()}}
+    
+      <div class="form-group required">
+          {{ form.title(class="form-control",placeholder="Title", value=form.title) }}
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            {{ form.category(class="form-control", placeholder="Category", value=form.category) }}
+          </div>
+          <div class="col-md-6">
+            {{ form.tags(class="form-control", placeholder="Tags") }}
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            {{ form.body(type="textarea", rows="15", class="form-control input-markdown", only_input=True, value=form.body, placeholder=form.body.label.text, value=form.body) }} 
+          </div>
+          <div class="col-md-6" style="height:auto;max-height:300px;overflow:auto;"> 
+            {{ form.body(only_preview=True) }} 
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        {{ form.summary(type="textarea", rows="5", class="form-control input-markdown", only_input=True, value=form.summary, placeholder=form.summary.label.text) }} 
+      </div>
+
+      {{ form.submit(class="btn btn-primary btn-block")}}
+
+    </form>
+    </div>
+
+  </div>
+</div>
+</div>
+
+{% endblock %}
