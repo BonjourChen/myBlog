@@ -1,7 +1,8 @@
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
-from markdown import markdown
+from flask.ext.misaka import markdown
+# from markdown import markdown
 import bleach
 from . import login_manager
 from flask.ext.login import UserMixin
