@@ -6,10 +6,13 @@
 	<title>{% block title %}{% endblock %} | Bonjour's Blog</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='buttons.css')}}">
+	<link rel="stylesheet" href="../static/css/editormd.css" />
+<!-- 	<link rel="stylesheet" href="../static/style.css" /> -->
 <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='flat-ui/css/flat-ui.min.css') }}"> -->
 	<script type="text/javascript" src="{{ url_for('static',filename='jquery.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
-<!-- 	<script src="//cdn.ckeditor.com/4.4.6/standard/ckeditor.js"></script> -->
+	<script type="text/javascript" src="{{ url_for('static', filename='editor/editormd.min.js')}}"></script>
+	
 </head>
 <style type="text/css">
 	* {

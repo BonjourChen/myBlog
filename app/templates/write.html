@@ -1,57 +1,70 @@
 {% extends "base.html" %}
+
+{% block title %}
+MYBLOG
+{% endblock %}
+
 {% block content %}
 {{ super()}}
 {{ pagedown.include_pagedown() }}
 
-  
+	
 <div class="container">
 <div class="row">
-  <div class="col-md-12">
-    <div style="border-radius:0" class="login-form col-md-12">
-<!--     <label><strong><h3>NEW BLOG</h3></strong></label> -->
-    <form class="form-horizontal" action="" method="POST" name="login" style="display:block">
-      {{form.hidden_tag()}}
-    
-      <div class="form-group required" style="margin-bottom:5px">
-          {{ form.title(class="form-control", style="border-radius:0", placeholder="Title") }}
-      </div>
+	<div class="col-md-12">
+		<div style="border-radius:0" class="login-form col-md-12">
+			<form class="form-horizontal" action="" method="POST" name="login" style="display:block">
+				{{form.hidden_tag()}}
+				<div class="form-group required" style="margin-bottom:5px">
+						{{ form.title(class="form-control", style="border-radius:0", placeholder="Title") }}
+				</div>
 
-      <div class="form-group" style="margin-bottom:5px">
-        <div class="row">
-          <div class="col-md-6">
-            {{ form.category(class="form-control", style="border-radius:0;", placeholder="Category") }}
-          </div>
-          <div class="col-md-6">
-            {{ form.tags(class="form-control", style="border-radius:0", placeholder="Tags") }}
-          </div>
-        </div>
-      </div>
-      <div class="form-group" style="margin-bottom:5px">
-        <div class="row">
-          <div class="col-md-6">
-            {{ form.body(type="textarea", rows="20", class="form-control input-markdown", style="border-radius:0", only_input=True,  placeholder=form.body.label.text) }} 
-          </div>
-          <div class="col-md-6" style="height:auto;max-height:300px;overflow:auto;"> 
-            {{ form.body(only_preview=True) }} 
-          </div>
-        </div>
-      </div>
-      <div class="form-group" >
-        {{ form.summary(type="textarea", rows="3", class="form-control input-markdown", style="border-radius:0", only_input=True, value=form.summary, placeholder=form.summary.label.text) }} 
-      </div>
-      <div class="form-group">
-        <div class="col-md-1 col-md-offset-5">
-          {{ form.submit(class="btn btn-success",style="border-radius:45px")}}
-        </div>
-        <div class="col-md-1">
-          <a href="{{ url_for('.edit') }}" class="btn btn-warning" style="border-radius:45px">Cancel</a>
-        </div>
-      </div>
-
-    </form>
-    </div>
-
-  </div>
+				<div class="form-group" style="margin-bottom:5px">
+					<div class="row">
+						<div class="col-md-6">
+							{{ form.category(class="form-control", style="border-radius:0;", placeholder="Category") }}
+						</div>
+						<div class="col-md-6">
+							{{ form.tags(class="form-control", style="border-radius:0", placeholder="Tags") }}
+						</div>
+					</div>
+				</div>
+				<div class="form-group" id="test-editormd"></div>
+				<!-- <div class="form-group" style="margin-bottom:5px">
+					<div class="row">
+						<div class="col-md-6">
+							{{ form.body(type="textarea", rows="20", class="form-control input-markdown", style="border-radius:0", only_input=True,  placeholder=form.body.label.text) }} 
+						</div>
+						<div class="col-md-6" style="height:auto;max-height:300px;overflow:auto;"> 
+							{{ form.body(only_preview=True) }} 
+						</div>
+					</div>
+				</div> -->
+				<div class="form-group" >
+					{{ form.summary(type="textarea", rows="3", class="form-control input-markdown", style="border-radius:0", only_input=True, value=form.summary, placeholder=form.summary.label.text) }} 
+				</div>
+				<div class="form-group">
+					<div class="col-md-1 col-md-offset-5">
+						{{ form.submit(class="btn btn-success",style="border-radius:45px")}}
+					</div>
+					<div class="col-md-1">
+						<a href="{{ url_for('.edit') }}" class="btn btn-warning" style="border-radius:45px">Cancel</a>
+					</div>
+				</div>
+				<script type="text/javascript">
+				var testEditor;
+					$(function() {
+						testEditor = editormd("test-editormd", {
+								width   : "100%",
+								height  : 640,
+								syncScrolling : "single",
+								path    : "../static/editor/lib/"
+						});
+					});
+				</script>
+			</form>
+		</div>
+	</div>
 </div>
 </div>
 
