@@ -16,7 +16,9 @@ MYBLOG
 			<form class="form-horizontal" action="" method="POST" name="login" style="display:block">
 				{{form.hidden_tag()}}
 				<div class="form-group required" style="margin-bottom:5px">
-						{{ form.title(class="form-control", style="border-radius:0", placeholder="Title") }}
+						{{ form.title(class="form-control", style="border-radius:0", placeholder="Title", value="") }}
+						<!-- <input id="title" name="title" class="form-control" style="border-radius:0" placeholder="Title" > -->
+<!-- 						<input id="submit" class="btn btn-default" type="submit" value="提交" name="submit"> -->
 				</div>
 
 				<div class="form-group" style="margin-bottom:5px">
@@ -29,7 +31,9 @@ MYBLOG
 						</div>
 					</div>
 				</div>
-				<div class="form-group" id="test-editormd"></div>
+				<div class="form-group" id="body-editormd" style="width:100%">
+				<!-- <textarea class="form-control" name="body" value=test-editormd-html-code></textarea></div> -->
+				<textarea class="form-control" name="body" value=body-editormd-markdown-doc></textarea></div>
 				<!-- <div class="form-group" style="margin-bottom:5px">
 					<div class="row">
 						<div class="col-md-6">
@@ -40,8 +44,9 @@ MYBLOG
 						</div>
 					</div>
 				</div> -->
-				<div class="form-group" >
-					{{ form.summary(type="textarea", rows="3", class="form-control input-markdown", style="border-radius:0", only_input=True, value=form.summary, placeholder=form.summary.label.text) }} 
+				<div class="form-group" id="summary-editormd" style="width:100%">
+					<textarea class="form-control" name="summary" value=summary-editormd-markdown-doc></textarea></div>
+					<!-- {{ form.summary(type="textarea", rows="3", class="form-control input-markdown", style="border-radius:0", only_input=True, value=form.summary, placeholder=form.summary.label.text) }}  -->
 				</div>
 				<div class="form-group">
 					<div class="col-md-1 col-md-offset-5">
@@ -54,13 +59,26 @@ MYBLOG
 				<script type="text/javascript">
 				var testEditor;
 					$(function() {
-						testEditor = editormd("test-editormd", {
+						testEditor = editormd("body-editormd", {
 								width   : "100%",
 								height  : 640,
 								syncScrolling : "single",
-								path    : "../static/editor/lib/"
+								path    : "../static/editor/lib/",
+								saveHTMLToTextarea : true,
+								flowChart : true,
+								tex : true
 						});
+						testEditormd1 = editormd("summary-editormd", {
+			                    width: "100%",
+			                    height  : 300,
+			                    path : "../static/editor/lib/",
+			                    saveHTMLToTextarea : true,
+								flowChart : true,
+								tex : true
+                });
 					});
+				var out1 = testEditor.getHTML(); 
+				alert(out1)
 				</script>
 			</form>
 		</div>

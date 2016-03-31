@@ -35,7 +35,7 @@ MYBLOG
 				<article style="box-shadow:0 0 10px #BDC3C7; border-radius:0;padding:20px 20px 20px 20px">
 					<a href="/post/{{ post.id }}"><h4 style="color:#34495E; ">{{ post.title }}</h4></a>
 					<p><small><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><span style="color:#8C8C8C">{{ post.timestamp }}</span></small></p>
-					<div>{{ post.summary_html|safe }}</div>
+					<div>{{ post.summary_html | safe }}</div>
 					<hr style="border:1px dashed #0000fff"/>
 					<p>
 						<a href="/category/{{ post.category }}"><span class="button button-rounded button-tiny"><span class="glyphicon glyphicon glyphicon-fire" aria-hidden="true"></span>{{ post.category }}</span></a>

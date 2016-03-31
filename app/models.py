@@ -1,12 +1,23 @@
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
-from flask.ext.misaka import markdown
-# from markdown import markdown
+# from flask.ext.misaka import markdown
 import bleach
 from . import login_manager
 from flask.ext.login import UserMixin
+import mistune
+from pygments import highlight
+from pygments.lexers import get_lexer_by_name
+from pygments.formatters import HtmlFormatter
 
+class HighlightRenderer(mistune.Renderer):
+    def block_code(self, code, lang):
+        if not lang:
+            return '\n<pre><code>%s</code></pre>\n' % \
+                mistune.escape(code)
+        lexer = get_lexer_by_name(lang, stripall=True)
+        formatter = HtmlFormatter()
+        return highlight(code, lexer, formatter)
 
 class User(UserMixin, db.Model):
 	__tablename__ = 'users'
@@ -41,29 +52,35 @@ class Post(db.Model):
 
 	@staticmethod
 	def on_changed_body(target, value, oldvalue, initiator):
-		allowed_tags = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em', 'i', 
-						'li', 'ol','pre', 'strong', 'ul', 'h1', 'h2', 'h3', 'p', 'img']
-		attrs = { 
-			'*': ['class'], 
-			'a': ['href', 'rel'], 
-			'img': ['src', 'alt']
-			}
-		target.body_html = bleach.linkify(bleach.clean(
-			markdown(value, output_format='html'),
-			tags=allowed_tags, attributes=attrs, strip=True))
+		# allowed_tags = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em', 'i', 
+		# 				'li', 'ol','pre', 'strong', 'ul', 'h1', 'h2', 'h3', 'p', 'img']
+		# attrs = { 
+		# 	'*': ['class'], 
+		# 	'a': ['href', 'rel'], 
+		# 	'img': ['src', 'alt']
+		# 	}
+		# target.body_html = bleach.linkify(bleach.clean(
+		# 	markdown(value, output_format='html'),
+		# 	tags=allowed_tags, attributes=attrs, strip=True))
+		renderer = HighlightRenderer()
+		markdown = mistune.Markdown(renderer=renderer,escape=True, hard_wrap=True)
+		target.body_html = markdown(value)
 
 	@staticmethod
 	def on_changed_summary(target, value, oldvalue, initiator):
-		allowed_tags = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em', 'i',
-						'li', 'ol','pre', 'strong', 'ul', 'h1', 'h2', 'h3', 'p', 'img']
-		attrs = { 
-			'*': ['class'], 
-			'a': ['href', 'rel'], 
-			'img': ['src', 'alt']
-			}
-		target.summary_html = bleach.linkify(bleach.clean(
-			markdown(value, output_format='html'),
-			tags=allowed_tags, attributes=attrs, strip=True))
+		# allowed_tags = ['a', 'abbr', 'acronym', 'b', 'blockquote', 'code', 'em', 'i',
+		# 				'li', 'ol','pre', 'strong', 'ul', 'h1', 'h2', 'h3', 'p', 'img']
+		# attrs = { 
+		# 	'*': ['class'], 
+		# 	'a': ['href', 'rel'], 
+		# 	'img': ['src', 'alt']
+		# 	}
+		# target.summary_html = bleach.linkify(bleach.clean(
+		# 	markdown(value, output_format='html'),
+		# 	tags=allowed_tags, attributes=attrs, strip=True))
+		renderer = HighlightRenderer()
+		markdown = mistune.Markdown(renderer=renderer,escape=True, hard_wrap=True)
+		target.summary_html = markdown(value)
 
 class Category(db.Model):
 	__tablename__ = 'category'
