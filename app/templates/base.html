@@ -4,15 +4,21 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>{% block title %}{% endblock %} | Bonjour's Blog</title>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='buttons.css')}}">
-	<link rel="stylesheet" href="../static/css/editormd.css" />
-	<link rel="stylesheet" href="../static/css/manni.css" />
-<!-- 	<link rel="stylesheet" href="../static/style.css" /> -->
-<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='flat-ui/css/flat-ui.min.css') }}"> -->
-	<script type="text/javascript" src="{{ url_for('static',filename='jquery.min.js') }}"></script>
-	<script type="text/javascript" src="{{ url_for('static',filename='bootstrap/js/bootstrap.min.js') }}"></script>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='buttons.css')}}" />
+	<link rel="stylesheet" type="text/css" href="../static/css/editormd.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/manni.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-tagsinput.css" />
+	<script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='editor/editormd.min.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='bootstrap-tagsinput.js')}}"></script>
+	<script src="../static/audiojs/audio.min.js"></script>
+	<script>
+	  audiojs.events.ready(function() {
+	    var as = audiojs.createAll();
+	  });
+	</script>
 	
 </head>
 <style type="text/css">
@@ -79,7 +85,7 @@ $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 					<div class="collapse navbar-collapse" id="navbar-collapse-1">
 						<ul class="nav navbar-nav clearfix">
 							<li><a href="/"><strong>BLOG</strong></a></li>
-							<li><a href="#"><strong>ABOUT ME</strong></a></li>
+							<li><a href="{{url_for('.about')}}"><strong>ABOUT ME</strong></a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							{% if current_user.is_authenticated %}

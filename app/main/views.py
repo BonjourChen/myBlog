@@ -43,7 +43,7 @@ def logout():
 def write():
 	form = PostForm()
 	if form.validate_on_submit():
-		post = Post(title=form.title.data, body=form.body.data, summary=form.summary.data)
+		post = Post(title=form.title.data, body=form.body.data, summary=form.summary.data, category=form.category.data, tags=form.tags.data)
 		db.session.add(post)
 		flash('Success add an article!')
 		return redirect(url_for('main.index'))
@@ -73,6 +73,10 @@ def delete(id):
 def editpage(id):
 	post = Post.query.filter_by(id=id).first()
 	return render_template('editpage.html',post=post)
+
+@main.route('/about')
+def about():
+	return render_template('about.html')
 
 
 @login_manager.user_loader

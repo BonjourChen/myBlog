@@ -9,11 +9,11 @@ MYBLOG
 {{ pagedown.include_pagedown() }}
 
 	
-<div class="container">
+<div class="container-fluid" style="margin-bottom:20px">
 <div class="row">
 	<div class="col-md-12">
 		<div style="border-radius:0" class="login-form col-md-12">
-			<form class="form-horizontal" action="" method="POST" name="login" style="display:block">
+			<form action="" method="POST" name="login" style="display:block">
 				{{form.hidden_tag()}}
 				<div class="form-group required" style="margin-bottom:5px">
 						{{ form.title(class="form-control", style="border-radius:0", placeholder="Title", value="") }}
@@ -27,13 +27,14 @@ MYBLOG
 							{{ form.category(class="form-control", style="border-radius:0;", placeholder="Category") }}
 						</div>
 						<div class="col-md-6">
-							{{ form.tags(class="form-control", style="border-radius:0", placeholder="Tags") }}
+<!-- 							{{ form.tags(class="form-control", style="border-radius:0", placeholder="Tags") }} -->
+							<input class="form-control" data-role="tagsinput" style="border-radius:0px; width:100%; height:100%" name="tags" placeholder="Tags">
 						</div>
 					</div>
 				</div>
-				<div class="form-group" id="body-editormd" style="width:100%">
+				<div class="form-group" id="body-editormd">
 				<!-- <textarea class="form-control" name="body" value=test-editormd-html-code></textarea></div> -->
-				<textarea class="form-control" name="body" value=body-editormd-markdown-doc></textarea></div>
+					<textarea class="form-control" name="body" value=body-editormd-markdown-doc></textarea></div>
 				<!-- <div class="form-group" style="margin-bottom:5px">
 					<div class="row">
 						<div class="col-md-6">
@@ -44,7 +45,7 @@ MYBLOG
 						</div>
 					</div>
 				</div> -->
-				<div class="form-group" id="summary-editormd" style="width:100%">
+				<div class="form-group" id="summary-editormd">
 					<textarea class="form-control" name="summary" value=summary-editormd-markdown-doc></textarea></div>
 					<!-- {{ form.summary(type="textarea", rows="3", class="form-control input-markdown", style="border-radius:0", only_input=True, value=form.summary, placeholder=form.summary.label.text) }}  -->
 				</div>
@@ -77,8 +78,6 @@ MYBLOG
 								tex : true
                 });
 					});
-				var out1 = testEditor.getHTML(); 
-				alert(out1)
 				</script>
 			</form>
 		</div>

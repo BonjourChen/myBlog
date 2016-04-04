@@ -49,6 +49,7 @@ class Post(db.Model):
 	summary = db.Column(db.Text)
 	summary_html = db.Column(db.Text)
 	category =  db.Column(db.Text)
+	tags = db.Column(db.Text)
 
 	@staticmethod
 	def on_changed_body(target, value, oldvalue, initiator):
