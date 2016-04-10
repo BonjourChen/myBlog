@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='buttons.css')}}" />
 	<link rel="stylesheet" type="text/css" href="../static/css/editormd.css" />
 	<link rel="stylesheet" type="text/css" href="../static/css/manni.css" />
-<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-tagsinput.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-tagsinput.css" />
 	<script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='editor/editormd.min.js')}}"></script>
@@ -61,6 +61,12 @@
 	.clearfix {
 		display: block;
 	}
+	.post-alert{
+		border:1px solid #EEE;
+		border-left:5px solid #CE4844;
+		padding:10px;
+		font-size: 15px;
+	}
 	p, h1, h2, h3, h4, h5, h6 {
 		font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
 	}  
@@ -74,7 +80,7 @@ $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 <body>
 	<div class="wrap">
 		<div class="main clearfix">
-			<nav class="navbar navbar-default" style="background-color:#FFFFFF; border:0; margin-top: 10px">
+			<nav class="navbar navbar-default" style="background-color:rgba(1,1,1,0); border:0; margin-top: 10px">
 				<div class="container">
 					<div class="navbar-header header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
