@@ -2,9 +2,11 @@ from flask import render_template, redirect, url_for, flash, request
 from flask.ext.login import login_user, logout_user, login_required, current_user
 from . import main
 from .. import db, login_manager
-from ..models import User,Post
+from ..models import User,Post,Category,Tags
 from .forms import LoginForm, PostForm
+import time
 
+ISOTIMEFORMAT = '%Y-%m-%d %X'
 POSTS_PER_PAGE = 10
 
 @main.route('/login', methods=['GET','POST'])
@@ -43,7 +45,8 @@ def logout():
 def write():
 	form = PostForm()
 	if form.validate_on_submit():
-		post = Post(title=form.title.data, body=form.body.data, summary=form.summary.data, category=form.category.data, tags=form.tags.data)
+		post = Post(title=form.title.data, body=form.body.data, summary=form.summary.data, 
+			category=form.category.data, tags=form.tags.data, timestamp=time.strftime(ISOTIMEFORMAT, time.localtime(time.time())))
 		db.session.add(post)
 		flash('Success add an article!')
 		return redirect(url_for('main.index'))

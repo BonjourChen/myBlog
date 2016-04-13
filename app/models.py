@@ -1,7 +1,6 @@
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
-# from flask.ext.misaka import markdown
 import bleach
 from . import login_manager
 from flask.ext.login import UserMixin
@@ -43,12 +42,12 @@ class Post(db.Model):
 	__tablename__ = 'posts'
 	id = db.Column(db.Integer, primary_key=True)
 	title=db.Column(db.Text)
-	timestamp = db.Column(db.DateTime, index=True, default=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+	timestamp = db.Column(db.DateTime, index=True)
 	body = db.Column(db.Text)
 	body_html = db.Column(db.Text)
 	summary = db.Column(db.Text)
 	summary_html = db.Column(db.Text)
-	category =  db.Column(db.Text)
+	category =  db.Column(db.Text, db.ForeignKey('category.id'))
 	tags = db.Column(db.Text)
 
 	@staticmethod
@@ -87,7 +86,7 @@ class Category(db.Model):
 	__tablename__ = 'category'
 	id = db.Column(db.Integer, primary_key=True)
 	category =  db.Column(db.Text)
-	# posts = db.relationship('Post', backref='category')
+	post = db.relationship('Post', backref='_category')
 
 class Tags(db.Model):
 	__tablename__ = 'tags'

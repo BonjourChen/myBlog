@@ -4,14 +4,14 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-12" style="box-shadow:0 0 10px #BDC3C7; border-radius:0;padding:20px">
 			{% for post in posts %}
 			<article style="box-shadow:0 0 10px #BDC3C7;border-radius:0">
 				<div class="col-md-10">
-					<a href="/post/{{ post.id }}"><h3 style="color:#34495E">{{ post.title }}</h3></a>
+					<a href="/post/{{ post.id }}"><h4 style="color:#34495E">{{ post.title }}</h4></a>
 				</div>
 				<div class="col-md-1">
-					<a href="/editpage/{{ post.id }}" class="btn btn-primary" style="border-radius:45px">EDIT</a>
+					<a href="/editpage/{{ post.id }}"><h4>EDIT</h4></a>
 				</div>
 				<div class="col-md-1">
 					<a href="/delete/{{ post.id }}" class="btn btn-danger" style="border-radius:45px">DELETE</a>
