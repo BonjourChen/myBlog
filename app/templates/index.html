@@ -7,23 +7,33 @@ MYBLOG
 {% block content %}
 {% import "_macros.html" as macro %}
 
-<div class="container">
-
-	<div style="height:350px;background:url('/static/pic/background.jpg')">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<p style="color:#FFF; font-size:25px; margin-top:50px">You could walk straight through hell with a smile</p>
-				</div>
+<div>
+	<div style="height:300px; width:100%; background:url('/static/pic/background.jpg')">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<p style="color:#FFF; font-size:25px; margin-top:50px">You could walk straight through hell with a smile</p>
 			</div>
 		</div>
 	</div>
+	</div>
+</div>
+<div class="container">
+	<!-- <div style="height:350px; width:100%; background:url('/static/pic/background.jpg')"> -->
+<!-- 		<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<p style="color:#FFF; font-size:25px; margin-top:50px">You could walk straight through hell with a smile</p>
+		</div>
+	</div>
+</div>
+	</div> -->
 
 	<div class="row">
 		<div class="col-md-9">
 			{% for post in posts %}
 			<div style="margin-top:20px">
-				<article style="box-shadow:0 0 10px #BDC3C7; border-radius:0;padding:20px">
+				<article style="padding:20px">
 					<a href="/post/{{ post.id }}"><h4 style="color:#34495E; ">{{ post.title }}</h4></a>
 					<p><small><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><span style="color:#8C8C8C">{{ post.timestamp }}</span></small></p>
 					<div class="post-alert">本博客采用创作共用版权协议, 要求署名、非商业用途和保持一致. 转载本博客文章必须也遵循署名-非商业用途-保持一致的创作共用协议</div>
@@ -44,14 +54,11 @@ MYBLOG
 		    </div>
 		</div>
 		<div class="col-md-3">
-			<div style="margin-top:20px">
-				<div style="box-shadow:0 0 10px #BDC3C7; border-radius:0;padding:20px">
-					<ul>Category
-						{% for c in category %}
-						{{ c.id}}
-						{% endfor %}
-					</ul>
-				</div>
+			<div style="margin-top:40px; padding-right: 20px">
+					<div><h3>Category</h3></div>
+					{% for c in category %}
+					<div><span><h4>{{ c.category}}</h4></span></div>
+					{% endfor %} 
 			</div>
 		</div>
 	</div>

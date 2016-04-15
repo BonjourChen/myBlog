@@ -26,7 +26,8 @@ def index():
 	pagination = Post.query.order_by(Post.timestamp.desc()).paginate(
 		page, per_page=POSTS_PER_PAGE, error_out=False)
 	posts = pagination.items
-	return render_template('index.html', posts=posts, pagination=pagination)
+	category = Category.query.all()
+	return render_template('index.html', posts=posts, pagination=pagination, category=category)
 
 @main.route('/post/<int:id>')
 def post(id):
