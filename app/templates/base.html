@@ -9,10 +9,15 @@
 	<link rel="stylesheet" type="text/css" href="../static/css/editormd.css" />
 	<link rel="stylesheet" type="text/css" href="../static/css/manni.css" />
 	<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-tagsinput.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/flat-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="../static/css/mystyle.css" />
 	<script type="text/javascript" src="{{ url_for('static', filename='jquery.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='editor/editormd.min.js')}}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='bootstrap-tagsinput.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='flat-ui.min.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='jquery-ui.min.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='jquery-ui.multidatespicker.js')}}"></script>
 	<script src="../static/audiojs/audio.min.js"></script>
 	<script>
 	  audiojs.events.ready(function() {
@@ -67,10 +72,39 @@
 		padding:10px;
 		font-size: 15px;
 	}
-	p, h1, h2, h3, h4, h5, h6 {
-		font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+/* 	p, h1, h2, h3, h4, h5, h6 {
+			font-family:"Microsoft Yahei","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+	} */	
+	h1{
+		font-size:2em;
+	}
+	h2{
+		font-size: 1.8em;
+	}
+	h3{
+		font-size: 1.6em;
+	}
+	h4{
+		font-size: 1.4em;
+	}
+	p{
+		font-size: 15px;
+	}
+/* 	blockquote p{
+	font-size: 17px;
+}
+body{
+	font-size: 15px;
+} */
+	h1, h2, h3, h4, h5, h6 { 
+		font-family: "Lucida Grande", "Helvetica Neue", "Arial", "Hiragino Sans GB", "Noto Sans CJK SC", "Heiti SC", "Microsoft YaHei", "WenQuanYi Microhei", sans-serif; 
+  		line-height: 1.5em;
+	}
+	p { 
+		font-family: "Georgia", "Times New Roman", "Songti SC", "SimSun", serif; 
+		margin-bottom: 1.7em;
+		line-height: 1.7em;
 	}  
-
 </style>
 
 <script type="text/javascript">
@@ -80,18 +114,18 @@ $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 <body>
 	<div class="wrap">
 		<div class="main clearfix">
-			<nav class="navbar navbar-default" style="background-color:rgba(1,1,1,0); border:0; margin-top: 10px; margin-bottom: 10px">
+			<nav class="navbar navbar-default" style="background-color:rgba(1,1,1,0); border-radius:0;border:0; margin-top: 10px; margin-bottom: 10px">
 				<div class="container">
 					<div class="navbar-header header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
 							<span class="sr-only">Toggle navigation</span>
 						</button>
-						<a class="navbar-brand" href="/"><img src="/static/pic/12.png" style="height:100%"></a>
+						<a class="navbar-brand" href="/"><img src="/static/pic/123.png" style="height:130%"></a>
 					</div>
 					<div class="collapse navbar-collapse" id="navbar-collapse-1">
 						<ul class="nav navbar-nav clearfix">
-							<li><a href="/" style="font-size: 18px">BLOG</a></li>
-							<li><a href="{{url_for('.about')}}"><strong>ABOUT ME</strong></a></li>
+							<li><a href="/" style="font-size: 18px;">BLOG</a></li>
+							<li><a href="{{url_for('.about')}}" style="font-size: 18px;">ABOUT ME</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 							{% if current_user.is_authenticated %}

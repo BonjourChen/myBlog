@@ -1,0 +1,49 @@
+.form-control{
+    height: 42px;
+    padding: 8px 12px;
+    font-family: Lato,Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 1.467;
+    color: #34495E;
+    border: 1px solid #BDC3C7;
+    border-radius: 6px;
+    box-shadow: none;
+    transition: border 0.25s linear 0s, color 0.25s linear 0s, background-color 0.25s linear 0s;
+}
+
+.bootstrap-tagsinput {
+    padding: 6px 1px 1px 6px;
+    font-size: 0px;
+    text-align: left;
+    background-color: #FFF;
+    border: 1px solid #BDC3C7;
+    border-radius: 0px;
+}
+
+#underline:after{
+    content: "";
+    width: 90px;
+    height: 1px;
+    background: #E74C3C;
+    position: absolute;
+    margin-top:-32px; 
+    padding-left: 20px;
+}
+
+.navbar-nav li:hover{
+    display: block;
+    border-bottom: 1px solid #E74C3C;
+    margin-bottom: -1px;
+}
+
+.transparentDiv{
+    -moz-opacity:0.50;
+    opacity:0.50;
+    filter:alpha(opacity=50);
+    background-color:#000;
+}
+
+.transparentDiv p,
+.transparentDiv div{
+    position: relative;
+}

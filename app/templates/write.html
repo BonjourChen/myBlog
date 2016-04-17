@@ -12,27 +12,26 @@ MYBLOG
 <div class="container-fluid" style="margin-bottom:20px">
 <div class="row">
 	<div class="col-md-12">
-		<div style="border-radius:0" class="login-form col-md-12">
-			<form action="" method="POST" name="login" style="display:block">
+		<div style="border-radius:0; background:#FFFFFF">
+			<form action="" method="POST" name="login" style="display:block;">
 				{{form.hidden_tag()}}
-				<div class="form-group required" style="margin-bottom:5px">
+				<div class="form-group required">
 						{{ form.title(class="form-control", style="border-radius:0", placeholder="Title", value="") }}
 						<!-- <input id="title" name="title" class="form-control" style="border-radius:0" placeholder="Title" > -->
 <!-- 						<input id="submit" class="btn btn-default" type="submit" value="提交" name="submit"> -->
 				</div>
-
-				<div class="form-group" style="margin-bottom:5px">
+				<div class="form-group" style="margin-top:-10px">
 					<div class="row">
-						<div class="col-md-6 dropdown">
+						<div class="col-md-6">
 							{{ form.category(class="form-control", style="border-radius:0;", placeholder="Category") }}
 						</div>
 						<div class="col-md-6">
 <!-- 							{{ form.tags(class="form-control", style="border-radius:0", placeholder="Tags") }} -->
-							<input class="form-control" data-role="tagsinput" style="border-radius:0px; width:100%; " name="tags" placeholder="Tags">
+							<input class="form-control" data-role="tagsinput" style="border-radius:0px;" name="tags" placeholder="Tags">
 						</div>
 					</div>
 				</div>
-				<div class="form-group" id="body-editormd">
+				<div class="form-group" id="body-editormd" style="margin-top:-20px">
 				<!-- <textarea class="form-control" name="body" value=test-editormd-html-code></textarea></div> -->
 					<textarea class="form-control" name="body" value=body-editormd-markdown-doc></textarea></div>
 				<!-- <div class="form-group" style="margin-bottom:5px">
@@ -49,7 +48,7 @@ MYBLOG
 					<textarea class="form-control" name="summary" value=summary-editormd-markdown-doc></textarea></div>
 					<!-- {{ form.summary(type="textarea", rows="3", class="form-control input-markdown", style="border-radius:0", only_input=True, value=form.summary, placeholder=form.summary.label.text) }}  -->
 				</div>
-				<div class="form-group">
+				<div class="form-group" style="margin-top:20px">
 					<div class="col-md-1 col-md-offset-5">
 						{{ form.submit(class="btn btn-success",style="border-radius:45px")}}
 					</div>

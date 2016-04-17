@@ -1,0 +1,12 @@
+.form-control, .select2-search input[type="text"] {
+    height: 42px;
+    padding: 8px 12px;
+    font-family: Lato,Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    line-height: 1.467;
+    color: #34495E;
+    border: 2px solid #BDC3C7;
+    border-radius: 6px;
+    box-shadow: none;
+    transition: border 0.25s linear 0s, color 0.25s linear 0s, background-color 0.25s linear 0s;
+}

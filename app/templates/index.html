@@ -8,14 +8,16 @@ MYBLOG
 {% import "_macros.html" as macro %}
 
 <div>
-	<div style="height:300px; width:100%; background:url('/static/pic/background.jpg')">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
-				<p style="color:#FFF; font-size:25px; margin-top:50px">You could walk straight through hell with a smile</p>
-			</div>
+	<div style="height:350px; width:100%; background:url('/static/pic/background.jpg');background-size:cover;">
+	<!-- <div style="height:250px; width:100%; background:#2C3E50"> -->
+<!-- 	<div class="container">
+	<div class="row">
+		<div class="col-md-6 transparentDiv" style="margin-top:20px">
+			<p style="color:#FFF; font-size:25px;">You could walk straight through hell with a smile</p>
+<p style="color:#FFF; font-size:25px; margin-top:50px">You could walk straight through hell with a smile</p>
 		</div>
 	</div>
+</div> -->
 	</div>
 </div>
 <div class="container">
@@ -32,36 +34,48 @@ MYBLOG
 	<div class="row">
 		<div class="col-md-9">
 			{% for post in posts %}
-			<div style="margin-top:20px">
-				<article style="padding:20px">
-					<a href="/post/{{ post.id }}"><h4 style="color:#34495E; ">{{ post.title }}</h4></a>
+			<div style="margin-top:20px; box-shadow:0 0 10px #BDC3C7; border-radius:0;">
+				<article style="padding:5px 20px">
+					<a href="/post/{{ post.id }}"><h3 style="color:#34495E; ">{{ post.title }}</h3></a>
 					<p><small><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span><span style="color:#8C8C8C">{{ post.timestamp }}</span></small></p>
 					<div class="post-alert">本博客采用创作共用版权协议, 要求署名、非商业用途和保持一致. 转载本博客文章必须也遵循署名-非商业用途-保持一致的创作共用协议</div>
-					<div style="margin-top:10px">{{ post.summary_html | safe }}</div>
+					<div style="margin-top:10px;">{{ post.summary_html | safe }}</div>
 					<hr style="border:1px dashed #0000fff"/>
-					<p>
-						<a href="/category/{{ post.category }}"><span class="button button-rounded button-tiny"><span class="glyphicon glyphicon glyphicon-fire" aria-hidden="true"></span>{{ post.category }}</span></a>
-						<a href="/post/{{ post.id }}" style="float:right"><span><span aria-hidden="true"></span>READ MORE</span></a>
-					</p>
+					<div style="padding-bottom:20px">
+						<label><span class="button button-rounded button-tiny"><span aria-hidden="true"></span>{{ post.category }}</span></label>
+						<a href="/post/{{ post.id }}" style="float:right"><span><span aria-hidden="true"></span>阅读全文</span></a>
+					</div>
 				</article>
 			</div>
 			{% endfor %}
 
-			<div>
+			<div style="margin-top:10px;margin-bottom:20px">
 			{% if pagination %}
-			{{ macro.pagination_widget(pagination,'.index') }}	
-		    {% endif %}
+			{{ macro.pagination_widget(pagination,'.index') }}		    
+			{% endif %}
 		    </div>
 		</div>
 		<div class="col-md-3">
-			<div style="margin-top:40px; padding-right: 20px">
-					<div><h3>Category</h3></div>
-					{% for c in category %}
-					<div><span><h4>{{ c.category}}</h4></span></div>
-					{% endfor %} 
+			<div>
+				<div style="padding:20px;margin-bottom:20px"><h3 style="color:#E74C3C">Category</h3></div>
+				{% for c in category %}
+				<div id="underline" style="padding:20px; margin-top:-50px"><p style="border-bottom:1px solid #ebebeb; font-size:18px"><a href="#" style="color:#34495E">>&nbsp{{ c.category}}</a></p></div>
+				{% endfor %} 
+			</div>
+			<div style="position:fixed;margin-top:-80px;margin-left:-10px">
+				<a class="glyphicon glyphicon-chevron-up" onclick="pageScroll()" href="#"></a>
 			</div>
 		</div>
+
 	</div>
 </div>
+<script type="text/javascript">
+	function pageScroll(){
+	    window.scrollBy(0,-200);
+	    scrolldelay = setTimeout('pageScroll()',100);
+	    var sTop=document.documentElement.scrollTop+document.body.scrollTop;
+	    if(sTop==0) clearTimeout(scrolldelay);
+	}
+</script>
 
 {% endblock %}

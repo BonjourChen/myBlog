@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container" style="margin-bottom:20px">
 	<div class="row">
-		<div class="col-md-12" style="box-shadow:0 0 10px #BDC3C7; border-radius:0;padding:20px">
+		<div class="col-md-12" style="box-shadow:0 0 10px #BDC3C7; border-radius:0;padding:5px 20px 20px">
 			<div>
 				<h3 style="color:#34495E">{{ post.title }}</h3>
 			</div>
@@ -25,6 +25,7 @@
 			</div>
 			<hr style="border:1px dashed #0000fff"/>
 			<a href="#"><span class="button button-rounded button-tiny"><span class="glyphicon glyphicon glyphicon-fire" aria-hidden="true"></span>{{ post.category }}</span></a>
+			<a href="/" style="float:right; color:#E74C3C"><span><span aria-hidden="true"></span>返回首页</span></a>
 		</div>
 	</div>
 </div>
