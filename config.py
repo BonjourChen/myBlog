@@ -5,6 +5,7 @@ class Config:
 	SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard_to_guess'
 	SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 	SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://gdnoc:123456Qw!@localhost/myBlog'
+	SQLALCHEMY_TRACK_MODIFICATIONS = True
 	DEBUG = True
 
 	@staticmethod
