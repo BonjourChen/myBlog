@@ -1,7 +1,7 @@
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
-import bleach
+# import bleach
 from . import login_manager
 from flask.ext.login import UserMixin
 import mistune

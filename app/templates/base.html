@@ -97,15 +97,27 @@ body{
 	font-size: 15px;
 } */
 	h1, h2, h3, h4, h5, h6 { 
-		font-family: "Lucida Grande", "Helvetica Neue", "Arial", "Hiragino Sans GB", "Noto Sans CJK SC", "Heiti SC", "Microsoft YaHei", "WenQuanYi Microhei", sans-serif; 
+		font-family: "Microsoft YaHei", "Lucida Grande", "Helvetica Neue", "Arial", "Hiragino Sans GB", "Noto Sans CJK SC", "Heiti SC", "Microsoft YaHei", "WenQuanYi Microhei", sans-serif; 
   		line-height: 1.5em;
 	}
-	p { 
-		font-family: "Georgia", "Times New Roman", "Songti SC", "SimSun", serif; 
-		margin-bottom: 1.7em;
+	p, span, li {
+		font-family: "Microsoft YaHei", "Times New Roman", "Georgia", "Songti SC", "SimSun", serif; 
+		/* margin-bottom: 1.7em; */
 		line-height: 1.7em;
-	}  
-</style>
+	}
+	blockquote p{
+		font-size: 15px;
+		line-height: 1.7em;
+	}
+	li {
+		font-size: 15px;
+		margin-left: 20px;
+	}
+	table th, td {
+		border: 1px solid #e5e5e5;
+
+	}
+</style>	
 
 <script type="text/javascript">
 $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
